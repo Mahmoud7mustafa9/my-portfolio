@@ -1,0 +1,226 @@
+
+<!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Bootstrap Icons CDN -->
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<!-- Bootstrap CSS -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hangman Game</title>
+  <link rel="stylesheet" href="/css/game.css" />
+</head>
+<body class="text-light text-center">
+
+  <h1>🪓 The Hangman Game</h1>
+  <p>Guess the word, one letter at a time!</p>
+<label>Choose the category</label>
+<select id="categorySelect">
+  <option value="null">...</option>
+  <option value="colors">Colors</option>
+  <option value="fruits">Fruits</option>
+  <option value="animals">Animals</option>
+</select>
+<button id="startBtn">Start Game</button>
+
+<div class="drew">
+  <div id="head" class="hidden">
+    <div id="eyeLeft" class="hidden"></div>
+    <div id="eyeRight" class="hidden"></div>
+    <div id="mouth" class="hidden"></div>
+    <div id="tearLeft" class="hidden"></div>
+    <div id="tearRight" class="hidden"></div>
+  </div>
+</div>
+
+<div id="wordDisplay" class="word"></div>
+  <div id="wrongLetters"></div>
+
+<input type="text" id="letterInput" maxlength="1" placeholder="Enter a letter" autofocus />
+  <button id="guessBtn">Guess</button>
+  <button id="resetBtn">Reset</button>
+  
+  <div id="resultBox" class="hidden">
+  <h2 id="resultMessage"></h2>
+  <div id="nameForm" class="hidden">
+    <input type="text" id="playerName" name="player" placeholder="Enter your name" />
+    <button id="saveScoreBtn" >Save Score</button>
+  </div>
+  <button id="playAgainBtn" class="hidden">Play Again</button>
+</div>
+
+<p><a href="/" class="btn btn-outline-light">← Back to Portfolio</a></p>
+
+<a href="/leaderboard" class="btn btn-outline-light mt-3">🏆 View Leaderboard</a>
+
+
+
+<!-- js code -->
+<script>
+const wordsByCategory = {
+  colors: ["red", "blue", "violet", "green"],
+  fruits: ["apple", "banana", "mango", "kiwi"],
+  animals: ["lion", "tiger", "elephant", "giraffe"]
+};
+
+let selectedCategory = "";
+let words = [];
+let selectedWord = "";
+let guessedLetters = [];
+let wrongLetters = [];
+
+const select = document.getElementById("categorySelect");
+const startBtn = document.getElementById("startBtn");
+const wordDisplay = document.getElementById("wordDisplay");
+const wrongLettersDiv = document.getElementById("wrongLetters");
+const letterInput = document.getElementById("letterInput");
+const guessBtn = document.getElementById("guessBtn");
+const resetBtn = document.getElementById("resetBtn");
+const resultBox = document.getElementById("resultBox");
+const resultMessage = document.getElementById("resultMessage");
+const nameForm = document.getElementById("nameForm");
+const playerNameInput = document.getElementById("playerName");
+const saveScoreBtn = document.getElementById("saveScoreBtn");
+const playAgainBtn = document.getElementById("playAgainBtn");
+
+const hangmanParts = ["head","eyeLeft","eyeRight","mouth","tearLeft","tearRight"];
+
+// ---------------- Game Initialization ----------------
+startBtn.addEventListener("click", () => {
+  if (select.value === "null") {
+    alert("Please choose a category!");
+
+    return;
+  }
+  selectedCategory = select.value;
+  words = wordsByCategory[selectedCategory];
+  startGame();
+  select.disabled = true;
+  startBtn.disabled = true;
+  guessBtn.style.display="block";
+  resetBtn.style.display="block";
+});
+
+function startGame() {
+  guessedLetters = [];
+  wrongLetters = [];
+  resultBox.classList.add("hidden");
+  nameForm.classList.add("hidden");
+  playAgainBtn.classList.add("hidden");
+  letterInput.disabled = false;
+  guessBtn.disabled = false;
+  hangmanParts.forEach(id => document.getElementById(id).classList.add("hidden"));
+
+  selectedWord = words[Math.floor(Math.random() * words.length)];
+  updateDisplay();
+}
+
+// ---------------- Display Functions ----------------
+function updateDisplay() {
+  wordDisplay.innerHTML= selectedWord
+    .split("")
+    .map(letter => guessedLetters.includes(letter) ?`<span class="letterGuessed">${letter}</span>`: "_")
+    .join(" ");
+  
+  if (wrongLetters.length ) { 
+    wrongLettersDiv.textContent = "Wrong: " + wrongLetters.join(", ");
+   wrongLettersDiv.style.display="block" ;} 
+   else{" ";
+    wrongLettersDiv.style.display="none" ;
+   }
+}
+
+function showHangman(count) {
+  if(count > 0 && count <= hangmanParts.length) {
+    document.getElementById(hangmanParts[count - 1]).classList.remove("hidden");
+  }
+}
+
+// ---------------- Game Logic ----------------
+function handleGuess() {
+  const letter = letterInput.value.toLowerCase();
+  letterInput.value = "";
+
+  if(!letter.match(/[a-z]/) || letter.length !== 1) {
+    alert("Enter a valid letter!");
+    return;
+  }
+  if(guessedLetters.includes(letter) || wrongLetters.includes(letter)) return;
+
+  if(selectedWord.includes(letter)) guessedLetters.push(letter);
+  else {
+    wrongLetters.push(letter);
+    showHangman(wrongLetters.length);
+  }
+
+  updateDisplay();
+  checkResult();
+}
+
+function checkResult() {
+  const won = selectedWord.split("").every(l => guessedLetters.includes(l));
+  if(won) showResult(`🎉 You won! The word was: ${selectedWord}`, true);
+  else if(wrongLetters.length >= hangmanParts.length) showResult(`💀 You lost! The word was: ${selectedWord}`, false);
+}
+
+function showResult(message, won) {
+  resultMessage.textContent = message;
+  resultMessage.style.color = won ? "#4caf50" : "#ff4444";
+  resultBox.classList.remove("hidden");
+  nameForm.classList.remove("hidden");
+  playAgainBtn.classList.remove("hidden");
+  letterInput.disabled = true;
+  guessBtn.disabled = true;
+}
+
+// ---------------- Score Saving ----------------
+async function saveScore(player, score) {
+  try {
+    const res = await fetch("/api/scores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ player, score })
+    });
+    const data = await res.json();
+    console.log("✅ Score saved:", data);
+  } catch (err) {
+    console.error("❌ Error saving score:", err);
+  }
+}
+
+saveScoreBtn.addEventListener("click", async () => {
+  const player = playerNameInput.value.trim();
+  if(!player) {
+    alert("Please enter your name first!");
+    return;
+  }
+  const won = selectedWord.split("").every(l => guessedLetters.includes(l));
+  const score = won ? 100 - wrongLetters.length * 10 : 0;
+  await saveScore(player, score);
+  resultMessage.textContent += " ✅ Score Saved!";
+  nameForm.classList.add("hidden");
+  
+  // Redirect to leaderboard after 2 seconds
+  setTimeout(() => {
+    window.location.href = "/leaderboard";
+  },2000);
+});
+
+// ---------------- Event Listeners ----------------
+guessBtn.addEventListener("click", handleGuess);
+letterInput.addEventListener("keydown", e => { if(e.key === "Enter") handleGuess(); });
+resetBtn.addEventListener("click", startGame);
+playAgainBtn.addEventListener("click", startGame);
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="/css/game.css" />
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+    }
+    table {
+      margin: 20px auto;
+      border-collapse: collapse;
+      width: 80%;
+      max-width: 700px;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #333;
+    }
+    th {
+      background: #007bff;
+      color: white;
+      text-transform: uppercase;
+    }
+    tr:nth-child(even) {
+      background-color: #1a1a1a;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 20px;
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    a.btn:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏆 Hangman Leaderboard</h1>
+
+  <% if (scores.length === 0) { %>
+    <p>No scores yet — be the first to play!</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Player</th>
+          <th>Score</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% scores.forEach((s, index) => { %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= s.player %></td>
+            <td><%= s.score %></td>
+            <td><%= moment(s.date).format("MMMM Do YYYY, h:mm:ss a") %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <a href="/play" class="btn">🎮 Play Again</a>
+  <a href="/" class="btn">🏠 Back to Portfolio</a>
+</body>
+</html>
