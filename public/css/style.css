@@ -495,9 +495,13 @@ background: #9f9f9f;
 }
 
 .project-card h3 {
+    
     color: #2b2727;
     margin: 10px 0 5px;
+    font-size: 100%;
+    font-weight: bold;
 }
+
 
 .project-card p {
         padding: 0 10px 15px;
@@ -529,7 +533,7 @@ background: #050606a6;
     border-radius: 15px;
     padding: 19px;
     width: 70%;
-    height: 61%;
+    height: auto;
     position: relative;
     animation: fadeIn 0.3s 
 ease;
@@ -537,8 +541,8 @@ ease;
 }
 
 .modal-box img {
-width: 35%;
-    height: 90%;
+    width: 70%;
+    height:40vh;
     float: left;
     border-radius: 5px;
     margin: 2%;
@@ -554,7 +558,7 @@ position: absolute;
     cursor: pointer;
     background-color: #5efdbb38;
     width: 5%;
-    height: 9%;
+    height: 5vh;
     border-radius: 52%;
         color: #ffe4e4;
 
@@ -566,11 +570,10 @@ position: absolute;
 .modal-box {
      background: #141414;
     border-radius: 15px;
-    display: grid
-;
+    display: block;
     padding: 16px;
     width: 90%;
-    height: 60%;
+    height: auto;
     position: relative;
     animation: fadeIn 0.3s 
 ease;
@@ -584,21 +587,23 @@ ease;
         cursor: pointer;
         background-color: #5efdbb38;
        width: 10%;
-        height: 9%;
+        height: 5vh;
         border-radius: 52%;
         color: #ffe4e4;
     }
 
 .modal-box img {
-        width: 60%;
-        height: 90%;
+             width: 80%;
+        height: 40vh;
         border-radius: 18px;
         position: relative;
         top: 0%;
-        left: 20%;
+        left: 9%;
     }
-}
-
+    .modal-box .text {
+      display: inline-block;
+    }
+    }
 
 
 @keyframes fadeIn {
