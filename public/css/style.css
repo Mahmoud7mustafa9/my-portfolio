@@ -77,7 +77,7 @@ background-color: rgba(20, 43, 41, 0.7);
         margin-left: 125px;
         margin-bottom: -18%;
     }
-    #contact button {
+    .send-message {
     border-radius: 30px;
     margin-top: 93px;
 }
@@ -166,10 +166,10 @@ margin-top: 2rem;
     padding: 1px;
 }
 .buttons a:hover {
-    background-color:rgb(20 43 41);
     margin: 6%;
     width: 9em;
     height: 3em;
+    background-color:rgb(20 43 41);
     color: #ebe6e6e6;
     position: relative;
     font-weight: bolder;
@@ -235,7 +235,7 @@ margin-top: 2rem;
 .who p i {
     font-size: 3em;
     margin-bottom: 10px;
-    color: #4f9d79; /* optional icon color */
+    color: #dfdfdf;
 }
 
 .who p:not(:last-child)::after {
@@ -264,6 +264,8 @@ margin-top: 2rem;
     .who p:not(:last-child)::after {
         display: none; /* hide vertical line on mobile */
     }
+
+
 }
 .contact {
   position: relative;
@@ -477,6 +479,7 @@ background: #9f9f9f;
     height: 55vh;
     margin-top: 10%;
     padding: 2%;
+    margin-bottom: 10%;
 }
 
 .project-card:hover {
@@ -509,24 +512,36 @@ background: #9f9f9f;
   align-items: center;
   z-index: 999;
 }
+.open-modal {
+ background-color:rgb(20 43 41);
+    color: #ebe6e6e6;
+}
+.open-modal:hover {
+ color:rgb(20 43 41);
+    background-color: #ebe6e6e6;
+}
+
+
+
 
 .modal-box {
-  background: #9fcfac;
+background: #050606a6;
     border-radius: 15px;
     padding: 19px;
     width: 70%;
-    height: 53%;
+    height: 61%;
     position: relative;
-    animation: fadeIn 0.3s ease;
-    color:rgba(20, 43, 41, 0.7);
+    animation: fadeIn 0.3s 
+ease;
+    color: rgb(147 223 217 / 70%);
 }
 
 .modal-box img {
-    width: 35%;
+width: 35%;
     height: 90%;
     float: left;
     border-radius: 5px;
-    margin-bottom: 1%;
+    margin: 2%;
     position: relative;
     top: -5%;
 }
@@ -537,11 +552,54 @@ position: absolute;
     top: 10px;
     font-size: 24px;
     cursor: pointer;
-    background-color: #04270485;
+    background-color: #5efdbb38;
     width: 5%;
-    height: 10%;
+    height: 9%;
     border-radius: 52%;
+        color: #ffe4e4;
+
 }
+
+@media(max-width:770px) {
+  
+/* modal */
+.modal-box {
+     background: #141414;
+    border-radius: 15px;
+    display: grid
+;
+    padding: 16px;
+    width: 90%;
+    height: 60%;
+    position: relative;
+    animation: fadeIn 0.3s 
+ease;
+    color: rgb(147 223 217 / 70%);
+}
+.close-modal {
+           position: absolute;
+        right: 12px;
+        top: 10px;
+        font-size: 24px;
+        cursor: pointer;
+        background-color: #5efdbb38;
+       width: 10%;
+        height: 9%;
+        border-radius: 52%;
+        color: #ffe4e4;
+    }
+
+.modal-box img {
+        width: 60%;
+        height: 90%;
+        border-radius: 18px;
+        position: relative;
+        top: 0%;
+        left: 20%;
+    }
+}
+
+
 
 @keyframes fadeIn {
   from { transform: scale(0.8); opacity: 0; }
@@ -596,10 +654,18 @@ position: absolute;
   border-color: #0d6efd;
   box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
 }
-
-#contact button {
+.send-message {
+   background-color:rgb(20 43 41);
+    color: #ebe6e6e6;
   border-radius: 30px;
-}
+  }
+
+.send-message:hover {
+  color:rgb(20 43 41);
+    background-color: #ebe6e6e6;
+  border-radius: 30px;
+  }
+
 
 /* Optional typography */
 h1, p {
@@ -613,4 +679,19 @@ h1, p {
 background-color: #030c0cf2;
     color: azure;
     box-shadow: 7px 8px 15px grey;
+}
+
+.playBtn {
+  background-color: cornsilk;
+    color: #081111;
+    font-weight: bolder;
+    font-style: italic;
+    box-shadow: 2px 4px 4px #214141;
+}
+.playBtn:hover {
+  color: cornsilk;
+    background-color: #081111;
+    font-weight: bolder;
+    font-style: italic;
+    box-shadow: -2px -4px 4px #214141;
 }
