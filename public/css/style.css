@@ -476,7 +476,7 @@ background: #9f9f9f;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     min-width: 250px;
     transition: transform 0.3s;
-    height: 55vh;
+    height: auto;
     margin-top: 10%;
     padding: 2%;
     margin-bottom: 10%;
@@ -538,9 +538,10 @@ background: #050606a6;
     animation: fadeIn 0.3s 
 ease;
     color: rgb(147 223 217 / 70%);
+    margin: auto;
 }
 
-.modal-box img {
+.modal-box .images {
     width: 70%;
     height:40vh;
     float: left;
@@ -548,8 +549,12 @@ ease;
     margin: 2%;
     position: relative;
     top: -5%;
+    display: contents;
 }
-
+.modal-box .images img{
+    width: 55vh;
+    height: 25vh;
+}
 .close-modal {
 position: absolute;
     right: 15px;
@@ -578,6 +583,7 @@ position: absolute;
     animation: fadeIn 0.3s 
 ease;
     color: rgb(147 223 217 / 70%);
+    margin: auto;
 }
 .close-modal {
            position: absolute;
@@ -591,14 +597,19 @@ ease;
         border-radius: 52%;
         color: #ffe4e4;
     }
+    .modal-box .images {
+    width: 70%;
+    height:40vh;
+    float: left;
+    border-radius: 5px;
+    margin: 2%;
+    position: relative;
+    top: -5%;
+    }
 
-.modal-box img {
-             width: 80%;
-        height: 40vh;
-        border-radius: 18px;
-        position: relative;
-        top: 0%;
-        left: 9%;
+.modal-box .images img {
+             width: 50%;
+  height: 12vh;
     }
     .modal-box .text {
       display: inline-block;

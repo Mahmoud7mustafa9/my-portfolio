@@ -19,8 +19,8 @@ app.use(bodyParser.json());
 
 
 const mongoose = require ("mongoose");
-const url = "mongodb+srv://7odamostafa97:s2mdHnKf08hNkxTZ@cluster0.yxwqa9j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-mongoose.connect(url).then(
+
+mongoose.connect(process.env.URL).then(
     ()=>{
         app.listen(port,()=>{
             console.log(`http://localhost:${port}`)
