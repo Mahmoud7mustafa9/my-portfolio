@@ -1,7 +1,7 @@
 require('dotenv').config(); // Load environment variables
 const express = require("express");
 const app = express() ;
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const Score = require("./models/schema");
 const moment = require("moment");
 app.use(express.static("public"));
