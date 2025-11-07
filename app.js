@@ -29,15 +29,16 @@ app.get("/test", (req, res) => {
 
 const mongoose = require ("mongoose");
 
-mongoose.connect(process.env.URL).then(
-    ()=>{
-        app.listen(PORT, '0.0.0.0', () => {
+// Start server immediately
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
-    }
-).catch((err)=>{
-    console.log(err)
-})
+
+// Connect to MongoDB asynchronously
+mongoose.connect(process.env.URL)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => console.log("❌ MongoDB connection error:", err));
+
 
 
 app.get("/",(req,res)=>{
