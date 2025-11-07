@@ -1,7 +1,7 @@
 require('dotenv').config(); // Load environment variables
 const express = require("express");
 const app = express() ;
-const port =  8000;
+const PORT = process.env.PORT || 3000;
 const Score = require("./models/schema");
 const moment = require("moment");
 app.use(express.static("public"));
@@ -22,8 +22,8 @@ const mongoose = require ("mongoose");
 
 mongoose.connect(process.env.URL).then(
     ()=>{
-        app.listen(port,()=>{
-            console.log(`http://localhost:${port}`)
+        app.listen(PORT,()=>{
+            console.log(`http://localhost:${PORT}`)
         })
     }
 ).catch((err)=>{
