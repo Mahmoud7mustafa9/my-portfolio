@@ -22,9 +22,9 @@ const mongoose = require ("mongoose");
 
 mongoose.connect(process.env.URL).then(
     ()=>{
-        app.listen(PORT,()=>{
-            console.log(`http://localhost:${PORT}`)
-        })
+        app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
     }
 ).catch((err)=>{
     console.log(err)
