@@ -87,13 +87,15 @@ app.post("/api/scores", async (req, res) => {
     const newScore = new Score({ player, score });
     await newScore.save();
 
-    res.json({ success: true, score: newScore });
+    // res.json({ success: true, score: newScore });
+  res.redirect("leaderboard")
+ 
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, error: err.message });
   }
 
-  res.redirect("leaderboard")
+ 
 });
 
 
@@ -107,4 +109,9 @@ app.get("/leaderboard", async (req, res) => {
     res.status(500).send("Error fetching leaderboard");
   }
 });
+
+app.get("/test", (req, res) => {
+  res.send("✅ Server is running and reachable!");
+});
+
 
