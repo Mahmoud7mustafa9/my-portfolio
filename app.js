@@ -12,10 +12,19 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 
+//test 
+console.log("PORT:", process.env.PORT);
+console.log("MongoDB URL set:", !!process.env.URL);
+console.log("EMAIL_USER set:", !!process.env.EMAIL_USER);
+console.log("EMAIL_PASS set:", !!process.env.EMAIL_PASS);
 
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.get("/test", (req, res) => {
+  res.send("✅ Server is running and reachable !");
+});
 
 
 const mongoose = require ("mongoose");
@@ -108,10 +117,6 @@ app.get("/leaderboard", async (req, res) => {
     console.error(err);
     res.status(500).send("Error fetching leaderboard");
   }
-});
-
-app.get("/test", (req, res) => {
-  res.send("✅ Server is running and reachable !");
 });
 
 
