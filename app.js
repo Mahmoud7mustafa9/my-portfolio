@@ -111,7 +111,7 @@ app.get("/leaderboard", async (req, res) => {
 });
 
 app.get("/test", (req, res) => {
-  res.send("✅ Server is running and reachable!");
+  res.send("✅ Server is running and reachable !");
 });
 
 
