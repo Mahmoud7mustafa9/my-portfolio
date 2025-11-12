@@ -1,12 +1,27 @@
-require('dotenv').config(); // Load environment variables
+require('dotenv').config();
 const express = require("express");
-const app = express() ;
+const app = express();
 
+const PORT = process.env.PORT || 8000; // Railway will provide PORT
 
+// Simple health check
 app.get("/", (req, res) => {
   res.send("✅ Railway app is live and responding!");
 });
- 
+
+// Start the server
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+
+
+
+
+// require('dotenv').config(); // Load environment variables
+// const express = require("express");
+// const app = express() ;
+
 // const PORT = process.env.PORT || 8000;
 // const Score = require("./models/schema");
 // const moment = require("moment");
