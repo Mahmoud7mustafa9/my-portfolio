@@ -1,19 +1,16 @@
-require('dotenv').config();
 const express = require("express");
 const app = express();
 
-// ✅ Use Railway's PORT environment variable
 const PORT = process.env.PORT || 8000;
 
 app.get("/", (req, res) => {
   res.send("✅ Railway app is live and responding!");
 });
 
-// ✅ Bind to 0.0.0.0 to accept external requests
+// Use 0.0.0.0 binding
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
-
 
 
 
