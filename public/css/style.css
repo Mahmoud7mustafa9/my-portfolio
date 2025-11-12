@@ -70,6 +70,7 @@ background-color: rgba(20, 43, 41, 0.7);
     left: 5%;
     flex-wrap: wrap;
 }
+
 }
 @media (max-width: 991px) {
     #message {
@@ -265,6 +266,32 @@ margin-top: 2rem;
         display: none; /* hide vertical line on mobile */
     }
 
+.enter {
+    position: relative;
+    right: 0%;
+    background-color: #0e1e1e7a;
+    width: 86%;
+    height: 20vh;
+    top: 2%;
+    padding: 8%;
+    border: 0.5px solid #0e82004d;
+    font-size: large;
+    border-bottom-right-radius: 48%;
+    border-top-left-radius: 59%;
+}
+#message {
+    position: relative;
+    font-size: 170%;
+    color: #8395a3;
+    width: 55%;
+    height: 18%;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    top: -8%;
+    left: -14%;
+}
 
 }
 .contact {
