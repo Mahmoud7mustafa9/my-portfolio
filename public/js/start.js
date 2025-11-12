@@ -12,31 +12,55 @@
     }
     }
 
-    
-document.querySelectorAll('.skill-fill').forEach(bar => {
-  const percent = parseInt(bar.getAttribute('data-percent'));
-  const percentText = bar.querySelector('.skill-percent');
 
-  let current = 0;
-  const duration = 2000; // total animation time in ms
-  const increment = percent / (duration / 20); // update every 20ms
+// fill skills bar
+document.addEventListener('DOMContentLoaded', () => {
 
-  setTimeout(() => {
-    bar.style.width = percent + '%'; // start the bar fill animation
+  const skillBars = document.querySelectorAll('.skill-fill');
 
+  const animateSkillBar = (bar) => {
+    const percent = parseInt(bar.getAttribute('data-percent'));
+    const percentText = bar.querySelector('.skill-percent');
+
+    let current = 0;
+    const duration = 2000; // match CSS transition
+    const intervalTime = 20; // update every 20ms
+    const steps = duration / intervalTime;
+    const increment = percent / steps;
+
+    // Animate number
     const counter = setInterval(() => {
-      if (current < percent) {
-        current += increment;
-        percentText.textContent = Math.round(current) + '%';
-      } else {
-        percentText.textContent = percent + '%';
+      current += increment;
+      if (current >= percent) {
+        current = percent;
         clearInterval(counter);
       }
-    }, 20);
-  }, 300);
+      percentText.textContent = Math.round(current) + '%';
+    }, intervalTime);
+
+    // Animate bar width
+    bar.style.width = percent + '%';
+  };
+
+  // Intersection Observer
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateSkillBar(entry.target);
+        observer.unobserve(entry.target); // only animate once
+      }
+    });
+  }, {
+    threshold: 0.5 // trigger when 50% of the bar is visible
+  });
+
+  skillBars.forEach(bar => observer.observe(bar));
+
 });
 
-//scrol to the view
+
+
+//scroll to the view
 
 document.querySelector(".about").addEventListener("click",()=>{
   document.querySelector(".aboutme").scrollIntoView({

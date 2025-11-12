@@ -68,9 +68,9 @@
 <!-- js code -->
 <script>
 const wordsByCategory = {
-  colors: ["red", "blue", "violet", "green"],
-  fruits: ["apple", "banana", "mango", "kiwi"],
-  animals: ["lion", "tiger", "elephant", "giraffe"]
+  colors: ["red", "blue", "violet", "green","black","white","grey"],
+  fruits: ["apple", "banana", "mango", "kiwi","orange","guava"],
+  animals: ["lion", "tiger", "elephant", "giraffe","wolf","fox","cat","dog",""]
 };
 
 let selectedCategory = "";
@@ -107,6 +107,7 @@ startBtn.addEventListener("click", () => {
   startGame();
   select.disabled = true;
   startBtn.disabled = true;
+  startBtn.style.display = "none";
   guessBtn.style.display="block";
   resetBtn.style.display="block";
 });
@@ -181,6 +182,10 @@ function showResult(message, won) {
   playAgainBtn.classList.remove("hidden");
   letterInput.disabled = true;
   guessBtn.disabled = true;
+  wrongLettersDiv.style.display="none";
+letterInput.style.display="none";
+ guessBtn.style.display="none";
+ resetBtn.style.display="none";
 }
 
 // ---------------- Score Saving ----------------
@@ -191,30 +196,58 @@ async function saveScore(player, score) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ player, score })
     });
-    const data = await res.json();
-    console.log("✅ Score saved:", data);
+
+    // If your API redirects instead of returning JSON, you might not get JSON
+    try {
+      const data = await res.json();
+      console.log("✅ Score saved:", data);
+    } catch {
+      console.log("✅ Score saved, no JSON returned");
+    }
+
   } catch (err) {
     console.error("❌ Error saving score:", err);
   }
 }
-
 saveScoreBtn.addEventListener("click", async () => {
   const player = playerNameInput.value.trim();
-  if(!player) {
+  if (!player) {
     alert("Please enter your name first!");
     return;
   }
+
   const won = selectedWord.split("").every(l => guessedLetters.includes(l));
   const score = won ? 100 - wrongLetters.length * 10 : 0;
-  await saveScore(player, score);
-  resultMessage.textContent += " ✅ Score Saved!";
-  nameForm.classList.add("hidden");
-  
-  // Redirect to leaderboard after 2 seconds
-  setTimeout(() => {
-    window.location.href = "/leaderboard";
-  },2000);
+
+  try {
+    const res = await fetch("/api/scores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ player, score })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      // handle duplicate name error
+      alert(data.error);
+      return;
+    }
+
+    resultMessage.textContent += " ✅ Score Saved!";
+    nameForm.classList.add("hidden");
+
+    // Redirect manually after success
+    setTimeout(() => {
+      window.location.href = "/leaderboard";
+    }, 1500);
+
+  } catch (err) {
+    console.error("❌ Error saving score:", err);
+    alert("Error saving score. Please try again.");
+  }
 });
+
 
 // ---------------- Event Listeners ----------------
 guessBtn.addEventListener("click", handleGuess);

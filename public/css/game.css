@@ -7,6 +7,8 @@ body {
   min-height: 100vh;
   background-image: linear-gradient(142deg, #060404, #000000a8);
 }
+
+
 label {
     margin: auto;
     margin-bottom: 2%;
@@ -170,3 +172,31 @@ background-color: rgb(181 181 140 / 28%);
 
 #tearLeft { left: 1.8em; }
 #tearRight { right: 1.8em; }
+
+@media(max-width=780px) {
+
+  .word {
+    font-size: 3rem;
+    letter-spacing: 14px;
+    margin: 3% 0% 15%;
+    font-style: italic;
+    font-family: cursive;
+    text-transform: uppercase;
+    width: 90%;
+    height: 11vh;
+}
+}
+
+@media(max-width:780px) {
+  
+  .word {
+    font-size: 3rem;
+    letter-spacing: 14px;
+    margin: 3% 0% 15%;
+    font-style: italic;
+    font-family: cursive;
+    text-transform: uppercase;
+    width: 90%;
+    height: 11vh;
+}
+}

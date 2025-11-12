@@ -35,6 +35,7 @@ const mongoose = require ("mongoose");
 // Start server immediately
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`http://localhost:${PORT}`);
 });
 
 // Connect to MongoDB asynchronously
@@ -89,7 +90,6 @@ app.get("/play",(req,res)=>{
     res.render("game")
 })
 
-
 app.post("/api/scores", async (req, res) => {
   try {
     const { player, score } = req.body;
@@ -97,18 +97,21 @@ app.post("/api/scores", async (req, res) => {
       return res.status(400).json({ error: "Missing player or score" });
     }
 
+    // Check existing player
+    const existing = await Score.findOne({ player });
+    if (existing) {
+      return res.status(400).json({ error: "Player name already exists" });
+    }
+
     const newScore = new Score({ player, score });
     await newScore.save();
 
-    // res.json({ success: true, score: newScore });
-  res.redirect("leaderboard")
- 
+    // ✅ Return JSON instead of redirect
+    res.json({ success: true, score: newScore });
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, error: err.message });
   }
-
- 
 });
 
 
