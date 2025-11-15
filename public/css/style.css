@@ -174,31 +174,7 @@ position: relative;
     border-bottom-right-radius: 19%;
   }}
 
-  @media (max-width: 800px){
-#message {
- position: relative;
-        font-size: 170%;
-        color: #8395a3;
-        width: 55%;
-        height: 29%;
-        text-align: center;
-        align-items: center;
-        top: -4%;
-        left: 0%;
-        display: block;
-        margin: 10% 5%;
-    }
-    .buttons {
-    margin-top: 2rem;
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    right: 32%;
-    top: -10%;
-}
-}
+
 .portfolio {
   position: relative;
   z-index: 3;
@@ -296,14 +272,23 @@ position: relative;
         width: 55%;
         height: 18%;
         text-align: center;
-        justify-content: center;
-        display: flex;
+        display: block;
         align-items: center;
-        top: -4%;
+        top: -8%;
         left: 0%;
         margin: 10% 5%;
     }
-
+   
+    .buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    right: 32%;
+    top: -10%;
+    }
 }
 .contact {
   position: relative;
@@ -765,7 +750,7 @@ ease-in-out infinite;
         color: #ddebeb;
 }
 #contact .form-control {
-  border-radius: 8px;
+  border-radius: 25px;
   box-shadow: none;
   transition: border-color 0.3s ease;
 }
