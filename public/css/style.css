@@ -280,18 +280,19 @@ margin-top: 2rem;
     border-top-left-radius: 59%;
 }
 #message {
-    position: relative;
-    font-size: 170%;
-    color: #8395a3;
-    width: 55%;
-    height: 18%;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    top: -8%;
-    left: -14%;
-}
+         position: relative;
+        font-size: 170%;
+        color: #8395a3;
+        width: 55%;
+        height: 18%;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        top: -4%;
+        left: 0%;
+        margin: 10% 5%;
+    }
 
 }
 .contact {
@@ -641,14 +642,80 @@ ease;
     .modal-box .text {
       display: inline-block;
     }
+      .timeline-content {
+      position: relative;
+      width: 45%;
+      padding: 1rem;
+      border-radius: 0.5rem;
     }
+    .timeline-item:nth-child(odd) .timeline-content {
+left: 17%;
+        background-image: linear-gradient(260deg, #e8eaea, #356561);
+        width: 70%;
+      
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+    left: 17%;
+        background-image: linear-gradient(260deg, #e8eaea, #356561);
+        width: 70%;
+    }
+    .timeline-item::before {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: rgb(20 43 41);
+    border-radius: 50%;
+    z-index: 1;
+}
+    .timeline-item:nth-child(odd)::after {
+              content: '';
+        position: absolute;
+        top: 0px;
+        left: 52%;
+        height: 2%;
+        z-index: 1;
+        background-image: linear-gradient(86deg, #213130, #575959);
+        border-radius: 25px;
+        border-bottom-left-radius: 190px;
+        border-bottom-right-radius: 161px;
+        animation: widthChange 2s 
+ease-in-out infinite;
+        animation-direction: alternate;
+    }
+
+
+.timeline-item:nth-child(even)::after {
+             content: '';
+        position: absolute;
+        top: 0px;
+        left: 52%;
+        height: 2%;
+        z-index: 1;
+        background-image: linear-gradient(86deg, #213130, #575959);
+        border-radius: 25px;
+        border-bottom-left-radius: 190px;
+        border-bottom-right-radius: 161px;
+        animation: widthChange 2s 
+ease-in-out infinite;
+        animation-direction: alternate;
+    }
+  }
+
+    
 
 
 @keyframes fadeIn {
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-
+@keyframes widthChange {
+  from { width: 70% ; opacity: 100% ; }
+  to { width: 10%;  opacity: 30%; }
+}
 
 /* Scroll buttons */
 .scroll-btn {
