@@ -43,37 +43,9 @@ background-color: rgba(20, 43, 41, 0.7);
     height: 122vh;
   }
 }
-@media (min-width: 992px) {
-  .containers::after {
-    content: "";
-    display: block;
-    width: 8em;
-    height: 19em;
-    top: -4%;
-    left: -10%;
-    position: absolute;
-    background: rgba(235, 230, 230, 0.9); /* cleaner rgba */
-    border-top-left-radius: 102%;
-    border-bottom-right-radius: 19%;
-  }
-#message {
-    position: relative;
-    font-size: 1.7rem;
-    color: #8395a3;
-    width: 30%;
-    min-height: 5rem;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 10%;
-    left: 5%;
-    flex-wrap: wrap;
-}
 
-}
 @media (max-width: 991px) {
-    #message {
+    #Smessage {
         margin-top: 68px;
         margin-left: 125px;
         margin-bottom: -18%;
@@ -146,14 +118,14 @@ position: relative;
     }
 
 .buttons {
-margin-top: 2rem;
+    margin-top: 2rem;
     display: flex;
     gap: 1rem;
     flex-direction: column;
     justify-content: center;
     position: relative;
     right: 32%;
-    top: -11%;
+    top: -10%;
 }
 .buttons a {
     background-color:#ebe6e6e6;
@@ -188,7 +160,45 @@ margin-top: 2rem;
     border-top-right-radius: 102%;
     border-bottom-left-radius: 19%;
 }
+@media (min-width: 992px) {
+  .containers::after {
+    content: "";
+    display: block;
+    width: 8em;
+    height: 19em;
+    top: -4%;
+    left: -10%;
+    position: absolute;
+    background: rgba(235, 230, 230, 0.9); /* cleaner rgba */
+    border-top-left-radius: 102%;
+    border-bottom-right-radius: 19%;
+  }}
 
+  @media (max-width: 800px){
+#message {
+ position: relative;
+        font-size: 170%;
+        color: #8395a3;
+        width: 55%;
+        height: 29%;
+        text-align: center;
+        align-items: center;
+        top: -4%;
+        left: 0%;
+        display: block;
+        margin: 10% 5%;
+    }
+    .buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    right: 32%;
+    top: -10%;
+}
+}
 .portfolio {
   position: relative;
   z-index: 3;
